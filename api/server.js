@@ -7,6 +7,8 @@ require("dotenv").config()
 
 const userRouter = require("./routes/users")
 const authRouter = require("./routes/auth")
+const todoRouter = require("./routes/todos")
+
 const { findOldToken } = require("./models/OldToken")
 
 const PORT = process.env.PORT
@@ -31,6 +33,7 @@ app.use( async (req, res, next) => {
 
 app.use("/auth", authRouter)
 app.use("/users", userRouter)
+app.use("/todos", todoRouter)
 
 mongoose.connect(URL)
 
