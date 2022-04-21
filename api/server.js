@@ -25,8 +25,9 @@ app.use( async (req, res, next) => {
     const token = authHeader.split(" ")[1]
     if (await findOldToken(token)) {
       res.status(401).json({ error: "Token invalid, log in again" })
+    } else {
+      req.user = jwt.verify(token, SECRET)
     }
-    req.user = jwt.verify(token, SECRET)
   }
   next()
 })
