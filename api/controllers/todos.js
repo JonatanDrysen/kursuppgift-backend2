@@ -1,4 +1,4 @@
-const { createTodo } = require("../models/Todo")
+const { createTodo, listTodos } = require("../models/Todo")
 
 const getNewTodo = async (req, res) => {
     const { text } = req.body
@@ -9,6 +9,12 @@ const getNewTodo = async (req, res) => {
     res.status(201).json({ newTodo })
 }
 
+const getTodoList = async (req, res) => {
+    const todoList = await listTodos(req.user.userId)
+    res.json({ todoList })
+}
+
 module.exports = {
-    getNewTodo
+    getNewTodo,
+    getTodoList
 }
