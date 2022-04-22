@@ -15,7 +15,7 @@ const getTodoList = async (req, res) => {
 }
 
 const getToggleDoneTodo = async (req, res) => {
-    const todo = toggleDoneTodo(req.params.id)
+    const todo = await toggleDoneTodo(req.params.id)
     console.log("PARAMS: ", req.params.id, "TODO: ", todo)
 
     res.json(todo)
