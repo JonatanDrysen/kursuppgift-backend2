@@ -16,9 +16,21 @@ const createTodo = async (author, text) => {
 }
 
 const listTodos = async (userId) => {
-    const todoList = await Todo.find({ author: mongoose.Types.ObjectId(userId) }).sort({ timestamp: -1 })
-    console.log("TODOLIST: ", todoList)
+    const todoList = await Todo.find({
+        author: mongoose.Types.ObjectId(userId),
+        complete: false
+    })
+    .sort({ timestamp: -1 })
     return todoList
+}
+
+const listDoneTodos = async (userId) => {
+    const doneTodoList = await Todo.find({
+        author: mongoose.Types.ObjectId(userId),
+        complete: true
+    })
+    .sort({ timestamp: -1 })
+    return doneTodoList
 }
 
 const toggleDoneTodo = async (id) => {
@@ -31,5 +43,6 @@ const toggleDoneTodo = async (id) => {
 module.exports = {
     createTodo,
     listTodos,
+    listDoneTodos,
     toggleDoneTodo
 }
