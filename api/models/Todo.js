@@ -7,6 +7,10 @@ const TodoSchema = new mongoose.Schema({
     timestamp: { type: String, default: Date.now() }
 })
 
+TodoSchema.statics.updateTodo = (todo) => {
+    return todo.complete = !todo.complete
+}
+
 const Todo = mongoose.model("Todo", TodoSchema)
 
 const createTodo = async (author, text) => {
@@ -21,7 +25,15 @@ const listTodos = async (userId) => {
     return todoList
 }
 
+const toggleDoneTodo = async (id) => {
+    const todo = await Todo.findById(id)
+    const updatedTodo = Todo.updateTodo(todo)
+    console.log("UPDATED TODO", updatedTodo)
+    updatedTodo.save()
+}
+
 module.exports = {
     createTodo,
-    listTodos
+    listTodos,
+    toggleDoneTodo
 }

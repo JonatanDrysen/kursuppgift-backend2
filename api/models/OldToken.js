@@ -12,7 +12,6 @@ const saveOldToken = async (token) => {
 }
 
 const findOldToken = async (token) => {
-    console.log("TOKEN: ", token)
     return await OldToken.findOne({ token })
 }
 

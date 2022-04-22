@@ -1,4 +1,4 @@
-const { createTodo, listTodos } = require("../models/Todo")
+const { createTodo, listTodos, toggleDoneTodo } = require("../models/Todo")
 
 const getNewTodo = async (req, res) => {
     const { text } = req.body
@@ -14,7 +14,15 @@ const getTodoList = async (req, res) => {
     res.json({ todoList })
 }
 
+const getToggleDoneTodo = async (req, res) => {
+    const todo = toggleDoneTodo(req.params.id)
+    console.log("PARAMS: ", req.params.id, "TODO: ", todo)
+
+    res.json(todo)
+}
+
 module.exports = {
     getNewTodo,
-    getTodoList
+    getTodoList,
+    getToggleDoneTodo
 }
