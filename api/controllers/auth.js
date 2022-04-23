@@ -21,7 +21,7 @@ const createToken = ({ _id, username }) => {
 }
 
 const loginUser = async (req, res) => {
-    const { username, password } = req.body.user
+    const { username, password } = req.body
     const user = await verifyUser(username, password)
     const token = createToken(user)
     if (user) {

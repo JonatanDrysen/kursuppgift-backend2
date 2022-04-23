@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const API_URL = "http://localhost:3001/users"
 
 export default function RegisterPage() {
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("")
+    const navigate = useNavigate()
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -17,6 +19,7 @@ export default function RegisterPage() {
         })
         .then(res => res.json())
         .then(data => console.log(data))
+        navigate("/auth/login")
     }
 
     return (
