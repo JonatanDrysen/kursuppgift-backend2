@@ -1,19 +1,14 @@
 import React from "react"
-import { Route, Routes, Link } from "react-router-dom";
-import HomePage from "../pages/HomePage"
-import LoginPage from "../pages/LoginPage"
-import CreateAccountPage from ("../pages/CreateAccountPage")
+import { Route, Routes } from "react-router-dom"
 
-function App() {
+import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
+
+export default function App() {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/todos" element={ <HomePage /> } />
-        <Route path="/auth/login" element={ <LoginPage /> } />
-        <Route path="/users" element={ <CreateAccountPage /> } />
-      </Routes>
-    </div>
-  );
+    <Routes>
+      <Route path="/auth/login" element={ <LoginPage /> } />
+      <Route path="/users" element={ <RegisterPage /> } />
+    </Routes>
+  )
 }
-
-export default App;

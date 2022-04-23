@@ -2,14 +2,15 @@ const { createToken } = require("./auth")
 const { createUser, getUserList } = require("../models/User")
 
 const registerUser = async (req, res) => {
-    const { username, password } = req.body.user
+    console.log("REQBODY", req.body)
+    const { username, password } = req.body
 
     if (!username || !password) {
         res.sendStatus(400).json( {error: "Enter a valid username and password"} )
     } else {
         const checkUserList = (await getUserList()).filter(
             (item) => username === item.username
-            //console.log(`item: ${item}`)
+            //console.log(`ITEM: ${item}`)
         )
         if (checkUserList.length > 0) {
             res.status(400).json( {error: "Username already registered"} )
