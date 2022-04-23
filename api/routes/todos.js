@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express()
 
+const { requireLogin } = require("../controllers/auth")
+
 const {
     getNewTodo,
     getTodoList,
@@ -8,9 +10,9 @@ const {
     getDoneTodoList
 } = require("../controllers/todos")
 
-router.get("/", getTodoList)
-router.get("/done", getDoneTodoList)
-router.post("/new", getNewTodo)
-router.put("/:id", getToggleDoneTodo)
+router.get("/", requireLogin, getTodoList)
+router.get("/done", requireLogin, getDoneTodoList)
+router.post("/new", requireLogin, getNewTodo)
+router.put("/:id", requireLogin, getToggleDoneTodo)
 
 module.exports = router
