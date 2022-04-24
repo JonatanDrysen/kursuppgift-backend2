@@ -19,7 +19,7 @@ userSchema.statics.login = async function (username, password) {
     if (user && (await bcrypt.compare(password, user.password))) {
         return user
     } else {
-        return null
+        console.log("bcrypt.compare failed", user)
     }
 }
 
