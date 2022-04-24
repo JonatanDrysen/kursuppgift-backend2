@@ -12,13 +12,18 @@ export default function LoginPage() {
         e.preventDefault()
         const payload = { username, password }
 
-        fetch(API_URL, {
+        await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            const token = data.user.token
+            console.log("DATA: ", data)
+            //console.log("TOKEN: ", token)
+            localStorage.setItem("todotodo", token)
+        })
         navigate("/todos")
     }
     return (
