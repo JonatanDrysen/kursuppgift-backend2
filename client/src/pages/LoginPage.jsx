@@ -20,7 +20,7 @@ export default function LoginPage() {
         .then(res => res.json())
         .then(data => {
             const token = data.user.token
-            console.log("DATA: ", data)
+            //console.log("DATA: ", data)
             //console.log("TOKEN: ", token)
             localStorage.setItem("todotodo", token)
         })

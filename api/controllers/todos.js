@@ -3,7 +3,7 @@ const { createTodo, listTodos, listDoneTodos, toggleDoneTodo } = require("../mod
 const getNewTodo = async (req, res) => {
     const { text } = req.body
     const userId = req.user.userId
-    console.log("TEXT:", text, "USERID:", userId)
+    //console.log("TEXT:", text, "USERID:", userId)
     const newTodo = await createTodo(userId, text)
 
     res.status(201).json({ newTodo })
@@ -21,7 +21,7 @@ const getDoneTodoList = async (req, res) => {
 
 const getToggleDoneTodo = async (req, res) => {
     const todo = await toggleDoneTodo(req.params.id)
-    console.log("PARAMS: ", req.params.id, "TODO: ", todo)
+    //console.log("PARAMS: ", req.params.id, "TODO: ", todo)
 
     res.json(todo)
 }
